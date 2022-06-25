@@ -22,9 +22,9 @@
                             <div class="my-3 text-center">
                                 <button class="btn btn-primary my-2" id="commentBtn1">
                                     Copy All</button>
-                                <textarea name="" id="commentbox1" cols="40" rows="20" class="form-control" readonly>
+                                <textarea name="" id="commentbox1" cols="40" rows="20" class="form-control" style="line-height: 0.7;" readonly>
                                     @foreach ($comment_contents as $comment_content) 
-                                    {{$loop->index +1 . ". " .$comment_content}}
+                                    {{$comment_content}}
                                     @endforeach
                                 </textarea>
                             </div>
@@ -40,7 +40,7 @@
                             <div class="my-3 text-center">
                                 <button class="btn btn-primary my-2" id="commentBtn2">
                                     Copy All</button>
-                                <textarea name="" id="commentbox2" cols="40" rows="20" class="form-control" readonly>
+                                <textarea name="" id="commentbox2" cols="40" rows="20" class="form-control" style="line-height: 0.7;" readonly>
                                     @foreach ($comment_contents as $comment_content) 
                                     {{"\\". $loop->index +1 . " " .$comment_content}}
                                     @endforeach

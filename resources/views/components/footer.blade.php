@@ -2,10 +2,7 @@
     <div class="container p-5">
         <div class="row">
             <div class="col">
-                <p class="">Copyright &copy; 2022, All Rights reserved</p>
-            </div>
-            <div class="col">
-                <a href="/dashboard" class="">Admin dashboard</a>
+                <p class="">Copyright &copy; {{date('Y')}}, All Rights reserved</p>
             </div>
         </div>
     </div>

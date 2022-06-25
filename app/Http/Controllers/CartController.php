@@ -2,13 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Order;
-use App\Models\Topics;
 use App\Models\Comments;
 use App\Models\Languages;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Auth;
 
 class CartController extends Controller
 {
@@ -18,11 +14,15 @@ class CartController extends Controller
         
         foreach ($request->except('_token') as $key => $value) {
             $languages = Languages::where('title', $key)->first();
-            $comment_contents[] = DB::table('comments')
+            if (empty($value)) {
+                $value = 0;
+            }
+            $comment_contents[] = Comments::inRandomOrder()
                 ->where('topic_id', $topic_id)
                 ->where('language_id', $languages->id)
                 ->limit($value)
                 ->get();
+            
         }
         foreach ($comment_contents as $row) {
             $contents[]=$row->toArray();
