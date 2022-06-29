@@ -22,11 +22,11 @@
                             <div class="my-3 text-center">
                                 <button class="btn btn-primary my-2" id="commentBtn1">
                                     Copy All</button>
-                                <textarea name="" id="commentbox1" cols="40" rows="20" class="form-control" style="line-height: 0.7;" readonly>
+                                <div class="" id="commentbox1" style="background-color:#e9ecef">
                                     @foreach ($comment_contents as $comment_content) 
-                                    {{$comment_content}}
+                                        <p>{{$comment_content}}</p>
                                     @endforeach
-                                </textarea>
+                                </div>
                             </div>
                                 </div>
                                 </div>
@@ -40,11 +40,11 @@
                             <div class="my-3 text-center">
                                 <button class="btn btn-primary my-2" id="commentBtn2">
                                     Copy All</button>
-                                <textarea name="" id="commentbox2" cols="40" rows="20" class="form-control" style="line-height: 0.7;" readonly>
+                                <div class="" id="commentbox2" style="background-color:#e9ecef">
                                     @foreach ($comment_contents as $comment_content) 
-                                    {{"\\". $loop->index +1 . " " .$comment_content}}
+                                        <p>{{"\\". $loop->index +1 . " " .$comment_content}}</p>
                                     @endforeach
-                                </textarea>
+                                </div>
                             </div>
                                 </div>
                                 </div>
@@ -59,20 +59,32 @@
             </div>
         </section>
     <script>
-        let commentbox1 = document.getElementById('commentbox1');
-        let commentbtn1 = document.getElementById('commentBtn1');
+        //grab the textboxes
+        let commentBox1 = document.getElementById('commentbox1');
+        let commentBox2 = document.getElementById('commentbox2');
 
-        commentbtn1.onclick = function() {
-            commentbox1.select();
+        //grab the copy buttons
+        let commentBtn1 = document.getElementById('commentBtn1');
+        let commentBtn2 = document.getElementById('commentBtn2');
+
+        commentBtn1.addEventListener('click', () => {
+            let range = document.createRange();
+            range.selectNode(document.getElementById('commentbox1'));
+            window.getSelection().removeAllRanges();
+            window.getSelection().addRange(range);
             document.execCommand("copy");
-        }
+            window.getSelection().removeAllRanges();
+        });
 
-        let commentbox2 = document.getElementById('commentbox2');
-        let commentbtn2 = document.getElementById('commentBtn2');
-
-        commentbtn2.onclick = function() {
-            commentbox2.select();
+        commentBtn2.addEventListener('click', () => {
+            let range = document.createRange();
+            range.selectNode(document.getElementById('commentbox2'));
+            window.getSelection().removeAllRanges();
+            window.getSelection().addRange(range);
             document.execCommand("copy");
-        }
+            window.getSelection().removeAllRanges();
+        });
+
+
     </script>
 <x-footer />
